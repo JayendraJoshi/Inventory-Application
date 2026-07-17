@@ -1,0 +1,27 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Inventory App</title>
+    </head>
+<body>
+    <header>
+       <%- include('partials/navbar') %>
+    </header>
+    <main>
+        <form action="">
+            <button type="submit">Add new genre</button>
+        </form>
+        <% if(!genres.length){ %>
+            <p>No genres added yet!</p>
+       <% } else{ %>
+              <%  genres.forEach(genre=>{%>
+                <% const sanitizedName = genre.name.toLowerCase().replace(/\s+/g, '-') %>
+                    <a href="/genres/<%=sanitizedName%>" class="card"><%=genre.name%></a>
+               <% })%>
+            <% } %>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
