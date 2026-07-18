@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const studioController = require('../controllers/studioController');
 
-router.get('/',()=>{
-    //Show all studios
-})
+
+router.get('/',studioController.renderStudioPage);
 
 router.get('/:studioName',()=>{
     //Show specific studio

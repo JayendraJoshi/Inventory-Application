@@ -15,7 +15,9 @@ app.set("view engine", "ejs");
 app.listen(PORT,()=>{
     console.log(`Server is listening on localhost:${PORT}`);
 })
-
-app.use('/',genreRouter);
+app.get('/',(req,res)=>{
+    res.redirect('/genres');
+})
+app.use('/genres',genreRouter);
 app.use('/movies',movieRouter);
 app.use('/studios',studioRouter);

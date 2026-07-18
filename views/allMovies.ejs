@@ -1,0 +1,31 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <header>
+                <%- include('partials/navbar') %>
+        </header>
+        <main>
+            <h1>All movies</h1>
+            <table>
+                <caption>Table of movies</caption>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                    <tbody>
+                        <% movies.forEach(movie=>{%>
+                            <tr>
+                                <th scope="row"><%= movie.name %></th>
+                                <td><%= movie.description %></td>
+                            </tr>
+                       <% }) %>
+                    </tbody>
+                </thead>
+            </table>
+        </main>
+    </body>
+</html>

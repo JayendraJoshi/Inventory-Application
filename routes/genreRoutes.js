@@ -4,9 +4,7 @@ const genreController = require('../controllers/genreController');
 
 router.get('/',genreController.renderIndexPage);
 
-router.get('/:genreName',()=>{
-    //Show specific genre
-})
+router.get('/:genreId',genreController.renderGenrePage);
 
 router.post('/new',()=>{
     //Add new genre
