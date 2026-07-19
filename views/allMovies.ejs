@@ -18,12 +18,17 @@
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Modify</th>
                     </tr>
                     <tbody>
                         <% movies.forEach(movie=>{%>
                             <tr>
                                 <th scope="row"><%= movie.name %></th>
                                 <td><%= movie.description %></td>
+                                 <td>
+                                    <form action="/movies/<%= movie.id %>/delete" method="POST">
+                                    <button type="submit">Delete</button>
+                                </td>
                             </tr>
                        <% }) %>
                     </tbody>

@@ -1,20 +1,17 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const movieController = require('../controllers/movieController');
+const movieController = require("../controllers/movieController");
 
+router.get("/", movieController.renderMoviePage);
 
-router.get('/',movieController.renderMoviePage);
+router.get("/:name", () => {
+  //Show specific films
+});
 
-router.get('/:movieName',()=>{
-    //Show specific films
-})
+router.post("/new", () => {
+  //Add new film
+});
 
-router.post('/new',()=>{
-    //Add new film
-})
+router.post("/:id/delete", movieController.deleteMovie);
 
-router.delete('/remove',()=>{
-    //Remove film
-})
-
-module.exports = {router};
+module.exports = { router };

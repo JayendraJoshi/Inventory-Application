@@ -18,12 +18,17 @@
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Modify</th>
                     </tr>
                     <tbody>
                         <% studios.forEach(studio=>{%>
                             <tr>
                                 <th scope="row"><%= studio.name %></th>
                                 <td><%= studio.description %></td>
+                                <td>
+                                    <form action="/studios/<%= studio.id %>/delete" method="POST">
+                                    <button type="submit">Delete</button>
+                                </td>
                             </tr>
                        <% }) %>
                     </tbody>

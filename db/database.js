@@ -11,7 +11,7 @@ const getAllGenres = async () => {
 };
 
 const getSpecificGenre = async (genreId) => {
-  const { rows } = await pool.query(`SELECT * FROM genres WHERE name = $1`, [
+  const { rows } = await pool.query(`SELECT * FROM genres WHERE id = $1`, [
     genreId,
   ]);
   return rows;
@@ -28,9 +28,19 @@ const getAllMoviesASC = async () => {
   return rows;
 };
 
+const deleteSpecificMovie = async (movieId) => {
+  const query = `DELETE FROM movies WHERE id = $1;`;
+  await pool.query(query, [movieId]);
+};
+
 const getAllStudiosASC = async () => {
   const { rows } = await pool.query(`SELECT * FROM studios ORDER BY name ASC;`);
   return rows;
+};
+
+const deleteSpecificStudio = async (studioId) => {
+  const query = `DELETE FROM studios WHERE id = $1;`;
+  await pool.query(query, [studioId]);
 };
 
 const insertGenre = async (name, description) => {
@@ -48,4 +58,6 @@ module.exports = {
   getAllMoviesASC,
   getAllStudiosASC,
   insertGenre,
+  deleteSpecificMovie,
+  deleteSpecificStudio,
 };

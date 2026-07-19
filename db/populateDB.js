@@ -1,9 +1,13 @@
-const { pool } = require('./database');
+const { pool } = require("./database");
 
-const insertDefaultStudiosData = async()=>{
-    const results = await pool.query("SELECT * FROM studios");
-    if(!results.rows.length){
-        const populateTableQuery = `INSERT INTO studios(name,description) VALUES
+const deleteAllData = async () => {
+  await pool.query(
+    `TRUNCATE TABLE movies, genres, studios RESTART IDENTITY CASCADE;`,
+  );
+};
+
+const insertDefaultStudiosData = async () => {
+  const populateTableQuery = `INSERT INTO studios(name,description) VALUES
         ('Pixar','Pixar Animation Studios, is an American animation studio based in Emeryville, California, known for it''s commercially successful computer-animated feature films. Pixar is a subsidiary of Walt Disney Studios.'),
         ('Universal Pictures','Universal is an American film production and distribution company headquartered in Universal City, California.It''s most commercially successful film franchises include Fast & Furious, Jurassic Park, and Despicable Me'),
         ('Paramount Pictures','Paramount Pictures is an American film production company, It''s most commercially successful film franchises include Star Trek, Indiana Jones, Top Gun, Mission: Impossible, and Transformers.'),
@@ -11,14 +15,11 @@ const insertDefaultStudiosData = async()=>{
         ('Walt Disney Animation Studios','Walt Disney Animation Studios (WDAS), sometimes shortened to Disney Animation, is an American animation studio which produces animated feature films and short films for the Walt Disney Company. The studio''s current production logo features a scene from its first synchronized sound cartoon, Steamboat Willie (1928). Founded on October 16, 1923, by brothers Walt and Roy O. Disney after the closure of Laugh-O-Gram Studio,[1] it is the longest-running animation studio in the world. It is currently organized as a division of Walt Disney Studios and is headquartered at the Roy E. Disney Animation Building at the Walt Disney Studios lot in Burbank, California.'),
         ('Lucasfilm','Lucasfilm Ltd. LLC is an American film and television production company founded by filmmaker George Lucas on December 10, 1971, in Marin County, California, in the city of San Rafael, and later moved to San Francisco in 2005.[2] It is best known for creating and producing the Star Wars and Indiana Jones franchises, as well as its leadership in developing special effects, sound, and computer animation for films. Since 2012, Lucasfilm has been a subsidiary of The Walt Disney Studios, who also owns former Lucasfilm subsidiary Pixar.')
         ;`;
-        await pool.query(populateTableQuery);
-    }
-}
+  await pool.query(populateTableQuery);
+};
 
 const insertDefaultMoviesData = async () => {
-  const results = await pool.query("SELECT * FROM movies");
-  if (!results.rows.length) {
-    const populateTableQuery = `
+  const populateTableQuery = `
       INSERT INTO movies (name, description, genre_id, studio_id)
       VALUES (
         'Toy Story 1',
@@ -75,14 +76,11 @@ const insertDefaultMoviesData = async () => {
         6
       );
     `;
-    await pool.query(populateTableQuery);
-  }
+  await pool.query(populateTableQuery);
 };
 
-const insertDefaultGenresData = async()=>{
-    const results = await pool.query("SELECT * FROM genres");
-    if(!results.rows.length){
-        const populateTableQuery =`INSERT INTO genres (name,description) VALUES
+const insertDefaultGenresData = async () => {
+  const populateTableQuery = `INSERT INTO genres (name,description) VALUES
         ('Action','An action story is similar to adventure, and the protagonist usually takes a risky turn, which leads to desperate situations (including explosions, fight scenes, daring escapes, etc.). Action and adventure are usually categorized together (sometimes even as "action-adventure") because they have much in common, and many stories fall under both genres simultaneously (for instance, the James Bond series can be classified as both).'),
         ('Adventure','An adventure story is about a protagonist who journeys to epic or distant places to accomplish something. It can have many other genre elements included within it, because it is a very open genre. The protagonist has a mission and faces obstacles to get to their destination. Also, adventure stories usually include unknown settings and characters with prized properties or features.'),
         ('Comedy','Comedy is a story intended to amuse the audience. It is a very open genre, and thus crosses over with many other genres on a frequent basis.'),
@@ -94,14 +92,14 @@ const insertDefaultGenresData = async()=>{
         ('Science Fiction','Science fiction (once known as scientific romance) is similar to fantasy, except stories in this genre use scientific understanding to explain the universe that it takes place in. It generally includes or is centered on the presumed effects or ramifications of computers or machines; travel through space, time or alternate universes; alien life-forms; genetic engineering; or other such things. The science or technology used may or may not be very thoroughly elaborated on.'),
         ('Thriller','A thriller is a story that is usually a mix of fear and excitement. It has traits from the suspense genre and often from the action, adventure or mystery genres, but the level of terror makes it borderline horror fiction at times as well. It generally has a dark or serious theme, which also makes it similar to drama.')
         ;`;
-        await pool.query(populateTableQuery);
-    }
-}
+  await pool.query(populateTableQuery);
+};
 
-const main = async()=>{
-    await insertDefaultStudiosData();
-    await insertDefaultMoviesData();
-    await insertDefaultGenresData();
-}
+const main = async () => {
+  await deleteAllData();
+  await insertDefaultGenresData();
+  await insertDefaultStudiosData();
+  await insertDefaultMoviesData();
+};
 
 main();

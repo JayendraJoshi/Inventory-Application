@@ -1,20 +1,17 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const studioController = require('../controllers/studioController');
+const studioController = require("../controllers/studioController");
 
+router.get("/", studioController.renderStudioPage);
 
-router.get('/',studioController.renderStudioPage);
+router.get("/:studioName", () => {
+  //Show specific studio
+});
 
-router.get('/:studioName',()=>{
-    //Show specific studio
-})
+router.post("/new", () => {
+  //Add new studio
+});
 
-router.post('/new',()=>{
-    //Add new studio
-})
+router.post("/:id/delete", studioController.deleteStudio);
 
-router.delete('/remove',()=>{
-    //Remove studio
-})
-
-module.exports = {router};
+module.exports = { router };

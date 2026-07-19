@@ -2,15 +2,15 @@ const db = require("../db/database");
 
 const renderIndexPage = async (req, res) => {
   const genres = await db.getAllGenres();
-  res.render("index", { genres: genres });
+  res.render("allGenres", { genres: genres });
 };
 
 const renderGenrePage = async (req, res) => {
-  const genreId = Number(req.params.genreId);
+  const genreId = Number(req.params.id);
   const genre = await db.getSpecificGenre(genreId);
+  console.log(genre);
   const movies = await db.getMoviesOfSpecificGenre(genreId);
-  res.render("moviesOfGenre", { movies: movies, genre: genre });
-  console.log(movies);
+  res.render("moviesOfGenre", { movies: movies, genre: genre[0] });
 };
 
 const renderAddGenrePage = async (req, res) => {
@@ -19,11 +19,9 @@ const renderAddGenrePage = async (req, res) => {
 
 const addGenre = async (req, res) => {
   const { name, description } = req.body;
-  console.log(name);
-  console.log(description);
   await db.insertGenre(name, description);
   const genres = await db.getAllGenres();
-  res.render("index", { genres: genres });
+  res.render("allGenres", { genres: genres });
 };
 
 module.exports = {

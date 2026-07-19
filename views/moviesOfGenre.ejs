@@ -1,31 +1,43 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Inventory App</title>
+    <link rel="stylesheet" href="/allMovies.css" />
     </head>
     <body>
-        <header>
+        <div class="header-wrapper">
+             <header>
                 <%- include('partials/navbar') %>
-        </header>
-        <main>
-            <h1><% genre.name %></h1>
+            </header>
+        </div>
+        <div class="main-wrapper">
+             <main>
+            <h1><%= genre.name %> movies</h1>
             <table>
-                <caption>Table of movies</caption>
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Modify</th>
                     </tr>
                     <tbody>
                         <% movies.forEach(movie=>{%>
                             <tr>
                                 <th scope="row"><%= movie.name %></th>
                                 <td><%= movie.description %></td>
+                                <td>
+                                    <form action="/movies/<%= movie.id %>/delete" method="POST">
+                                    <button type="submit">Delete</button>
+                                </td>
                             </tr>
                        <% }) %>
                     </tbody>
                 </thead>
             </table>
         </main>
+        </div>
+        <div class="footer-wrapper">
+            <%-include('partials/footer')%>
+        </div>
     </body>
 </html>
