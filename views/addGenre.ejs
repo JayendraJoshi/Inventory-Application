@@ -1,0 +1,25 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Inventory App</title>
+    <link rel="stylesheet" href="/addGenre.css" />
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <header><%- include('partials/navbar') %></header>
+    </div>
+    <div class="main-wrapper">
+      <main>
+        <h2>Add a genre</h2>
+        <form method="post" action="/genres/new">
+          <label for="name">Name</label>
+          <input id="name" name="name" />
+          <label for="description">Description</label>
+          <textarea id="description" name="description"></textarea>
+          <button type="submit">Add</button>
+        </form>
+      </main>
+    </div>
+    <div class="footer-wrapper"><%-include('partials/footer')%></div>
+  </body>
+</html>
