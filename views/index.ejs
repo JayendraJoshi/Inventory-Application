@@ -2,6 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Inventory App</title>
+        <link rel="stylesheet" href="/index.css">
     </head>
 <body>
     <header>
@@ -11,16 +12,18 @@
         <form action="/genres/new" method="post">
             <button type="submit">Add new genre</button>
         </form>
+        <div class="cards-container">
         <% if(!genres.length){ %>
             <p>No genres added yet!</p>
-       <% } else{ %>
+        <% } else{ %>
               <%  genres.forEach(genre=>{%>
+                <div class="card">
                     <a href="/genres/<%= genre.id %>" class="card"><%= genre.name%></a>
-               <% })%>
+                </div>
+                <% })%>
             <% } %>
+        </div>
     </main>
-    <footer>
-
-    </footer>
+    <%-include('partials/footer')%>
 </body>
 </html>
