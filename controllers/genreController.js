@@ -1,6 +1,6 @@
 const db = require("../db/database");
 
-const renderIndexPage = async (req, res) => {
+const renderAllGenrePage = async (req, res) => {
   const genres = await db.getAllGenres();
   res.render("allGenres", { genres: genres });
 };
@@ -21,11 +21,11 @@ const addGenre = async (req, res) => {
   const { name, description } = req.body;
   await db.insertGenre(name, description);
   const genres = await db.getAllGenres();
-  res.render("allGenres", { genres: genres });
+  res.redirect("/genres");
 };
 
 module.exports = {
-  renderIndexPage,
+  renderAllGenrePage,
   renderGenrePage,
   addGenre,
   renderAddGenrePage,
