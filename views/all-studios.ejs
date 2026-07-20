@@ -21,10 +21,10 @@
             <% } else{ %>
                 <%  studios.forEach(studio=>{%>
                     <div class="card">
-                        <div>
+                        <div class="url-container">
                              <a href="/studios/<%= studio.id %>" class="card"><%= studio.name%></a>
                         </div>          
-                        <div>
+                        <div class="button-container">
                             <form action="studios/<%= studio.id %>/delete" method="post">
                                 <button type="submit">Delete</button>
                             </form>

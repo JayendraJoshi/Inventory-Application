@@ -13,7 +13,7 @@
     <div class="main-wrapper">
         <main>
             <form action="/genres/new" method="get">
-                <button type="submit">Add new genre</button>
+                <button class="add-button" type="submit">Add new genre</button>
             </form>
             <div class="cards-container">
             <% if(!genres.length){ %>
@@ -21,10 +21,10 @@
             <% } else{ %>
                 <%  genres.forEach(genre=>{%>
                     <div class="card">
-                        <div>
+                        <div class="url-container">
                              <a href="/genres/<%= genre.id %>" class="card"><%= genre.name%></a>
                         </div>          
-                        <div>
+                        <div class="button-container">
                             <form action="genres/<%= genre.id %>/delete" method="post">
                                 <button type="submit">Delete</button>
                             </form>
