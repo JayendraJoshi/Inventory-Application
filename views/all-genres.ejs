@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Inventory App</title>
-        <link rel="stylesheet" href="/allGenres.css">
+        <link rel="stylesheet" href="/card-layout.css">
     </head>
 <body>
     <div class="header-wrapper">
@@ -21,7 +21,14 @@
             <% } else{ %>
                 <%  genres.forEach(genre=>{%>
                     <div class="card">
-                        <a href="/genres/<%= genre.id %>" class="card"><%= genre.name%></a>
+                        <div>
+                             <a href="/genres/<%= genre.id %>" class="card"><%= genre.name%></a>
+                        </div>          
+                        <div>
+                            <form action="genres/<%= genre.id %>/delete" method="post">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </div>
                     </div>
                     <% })%>
                 <% } %>

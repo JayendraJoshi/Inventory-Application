@@ -2,11 +2,9 @@ const express = require("express");
 const router = express.Router();
 const studioController = require("../controllers/studioController");
 
-router.get("/", studioController.renderStudioPage);
+router.get("/", studioController.renderAllStudiosPage);
 
-router.get("/:studioName", () => {
-  //Show specific studio
-});
+router.get("/:id", studioController.renderStudioPage);
 
 router.post("/new", () => {
   //Add new studio

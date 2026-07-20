@@ -2,19 +2,18 @@ const db = require("../db/database");
 
 const renderAllGenrePage = async (req, res) => {
   const genres = await db.getAllGenres();
-  res.render("allGenres", { genres: genres });
+  res.render("all-genres", { genres: genres });
 };
 
-const renderGenrePage = async (req, res) => {
+const renderMoviesOfGenrePage = async (req, res) => {
   const genreId = Number(req.params.id);
-  const genre = await db.getSpecificGenre(genreId);
-  console.log(genre);
-  const movies = await db.getMoviesOfSpecificGenre(genreId);
-  res.render("moviesOfGenre", { movies: movies, genre: genre[0] });
+  const genre = await db.getGenre(genreId);
+  const movies = await db.getMoviesOfGenre(genreId);
+  res.render("movies-of-genre", { movies: movies, genre: genre[0] });
 };
 
 const renderAddGenrePage = async (req, res) => {
-  res.render("addGenre");
+  res.render("add-genre");
 };
 
 const addGenre = async (req, res) => {
@@ -24,9 +23,16 @@ const addGenre = async (req, res) => {
   res.redirect("/genres");
 };
 
+const deleteGenre = async (req, res) => {
+  const genreId = Number(req.params.id);
+  await db.deleteGenre(genreId);
+  res.redirect("/genres");
+};
+
 module.exports = {
   renderAllGenrePage,
-  renderGenrePage,
+  renderMoviesOfGenrePage,
   addGenre,
   renderAddGenrePage,
+  deleteGenre,
 };

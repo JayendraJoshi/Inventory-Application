@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
 const path = require("node:path");
-const { router: studioRouter } = require("./routes/studioRoutes");
-const { router: genreRouter } = require("./routes/genreRoutes");
-const { router: movieRouter } = require("./routes/movieRoutes");
+const { router: studioRouter } = require("./routes/studio-routes");
+const { router: genreRouter } = require("./routes/genre-routes");
+const { router: movieRouter } = require("./routes/movie-routes");
 const { renderIndexPage } = require("./controllers/indexController");
 const PORT = 3000;
 

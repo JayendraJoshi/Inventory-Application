@@ -10,14 +10,18 @@ const getAllGenres = async () => {
   return rows;
 };
 
-const getSpecificGenre = async (genreId) => {
+const getGenre = async (genreId) => {
   const { rows } = await pool.query(`SELECT * FROM genres WHERE id = $1`, [
     genreId,
   ]);
   return rows;
 };
 
-const getMoviesOfSpecificGenre = async (genreId) => {
+const deleteGenre = async (genreId) => {
+  await pool.query(`DELETE FROM genres WHERE id = $1;`, [genreId]);
+};
+
+const getMoviesOfGenre = async (genreId) => {
   const query = "SELECT * FROM movies WHERE genre_id = $1;";
   const { rows } = await pool.query(query, [genreId]);
   return rows;
@@ -28,7 +32,14 @@ const getAllMoviesASC = async () => {
   return rows;
 };
 
-const deleteSpecificMovie = async (movieId) => {
+const getMovie = async (movieId) => {
+  const { rows } = await pool.query(`SELECT * FROM movies WHERE id = $1;`, [
+    movieId,
+  ]);
+  return rows[0];
+};
+
+const deleteMovie = async (movieId) => {
   const query = `DELETE FROM movies WHERE id = $1;`;
   await pool.query(query, [movieId]);
 };
@@ -38,7 +49,14 @@ const getAllStudiosASC = async () => {
   return rows;
 };
 
-const deleteSpecificStudio = async (studioId) => {
+const getStudio = async (studioId) => {
+  const { rows } = await pool.query(`SELECT * FROM studios WHERE id = $1`, [
+    studioId,
+  ]);
+  return rows[0];
+};
+
+const deleteStudio = async (studioId) => {
   const query = `DELETE FROM studios WHERE id = $1;`;
   await pool.query(query, [studioId]);
 };
@@ -53,11 +71,14 @@ const insertGenre = async (name, description) => {
 module.exports = {
   pool,
   getAllGenres,
-  getSpecificGenre,
-  getMoviesOfSpecificGenre,
+  getGenre,
+  getMoviesOfGenre,
   getAllMoviesASC,
   getAllStudiosASC,
   insertGenre,
-  deleteSpecificMovie,
-  deleteSpecificStudio,
+  deleteMovie,
+  deleteStudio,
+  deleteGenre,
+  getMovie,
+  getStudio,
 };

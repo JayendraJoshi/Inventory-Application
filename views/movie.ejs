@@ -1,0 +1,22 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Inventory App</title>
+    <link rel="stylesheet" href="/allStudios.css" />
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <header><%- include('partials/navbar') %></header>
+    </div>
+    <div class="main-wrapper">
+      <main>
+        <h1><%= movie.name %></h1>
+        <img src="<%=movie.img_url%>" />
+        <p><%= genre.name %></p>
+        <p><%= studio ? studio.name : 'Unknown' %></p>
+        <p><%= movie.description %></p>
+      </main>
+    </div>
+    <div class="footer-wrapper"><%-include('partials/footer')%></div>
+  </body>
+</html>

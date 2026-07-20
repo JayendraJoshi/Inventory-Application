@@ -2,11 +2,9 @@ const express = require("express");
 const router = express.Router();
 const movieController = require("../controllers/movieController");
 
-router.get("/", movieController.renderMoviePage);
+router.get("/", movieController.renderAllMoviesPage);
 
-router.get("/:name", () => {
-  //Show specific films
-});
+router.get("/:id", movieController.renderMoviePage);
 
 router.post("/new", () => {
   //Add new film

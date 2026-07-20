@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Inventory App</title>
-    <link rel="stylesheet" href="/allMovies.css" />
+    <link rel="stylesheet" href="/table-layout.css" />
     </head>
     <body>
         <div class="header-wrapper">
@@ -12,20 +12,18 @@
         </div>
         <div class="main-wrapper">
              <main>
-            <h1><%= genre.name %> movies</h1>
+            <h1>Movies</h1>
             <table>
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Description</th>
                         <th>Modify</th>
                     </tr>
                     <tbody>
                         <% movies.forEach(movie=>{%>
                             <tr>
-                                <th scope="row"><%= movie.name %></th>
-                                <td><%= movie.description %></td>
-                                <td>
+                                <th scope="row"><a href="/movies/<%=movie.id%>"><%= movie.name %></a></th>
+                                 <td>
                                     <form action="/movies/<%= movie.id %>/delete" method="POST">
                                     <button type="submit">Delete</button>
                                 </td>

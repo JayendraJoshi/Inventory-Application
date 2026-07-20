@@ -1,0 +1,20 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Inventory App</title>
+    <link rel="stylesheet" href="/allStudios.css" />
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <header><%- include('partials/navbar') %></header>
+    </div>
+    <div class="main-wrapper">
+      <main>
+        <h1><%= studio.name %></h1>
+        <img src="<%=studio.img_url%>" />
+        <p><%= studio.description %></p>
+      </main>
+    </div>
+    <div class="footer-wrapper"><%-include('partials/footer')%></div>
+  </body>
+</html>

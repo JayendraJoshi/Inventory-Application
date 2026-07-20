@@ -1,0 +1,42 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Inventory App</title>
+        <link rel="stylesheet" href="/card-layout.css">
+    </head>
+<body>
+    <div class="header-wrapper">
+        <header>
+            <%- include('partials/navbar') %>
+        </header>
+    </div>
+    <div class="main-wrapper">
+        <main>
+            <form action="/studios/new" method="get">
+                <button type="submit">Add new studio</button>
+            </form>
+            <div class="cards-container">
+            <% if(!studios.length){ %>
+                <p>No studio added yet!</p>
+            <% } else{ %>
+                <%  studios.forEach(studio=>{%>
+                    <div class="card">
+                        <div>
+                             <a href="/studios/<%= studio.id %>" class="card"><%= studio.name%></a>
+                        </div>          
+                        <div>
+                            <form action="studios/<%= studio.id %>/delete" method="post">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                    <% })%>
+                <% } %>
+            </div>
+        </main>
+        </div>
+    <div class="footer-wrapper">
+        <%-include('partials/footer')%>
+    </div>  
+</body>
+</html>

@@ -6,12 +6,10 @@ router.get("/", genreController.renderAllGenrePage);
 
 router.get("/new", genreController.renderAddGenrePage);
 
-router.get("/:id", genreController.renderGenrePage);
+router.get("/:id", genreController.renderMoviesOfGenrePage);
 
 router.post("/new", genreController.addGenre);
 
-router.delete("/remove", () => {
-  //Remove genre
-});
+router.post("/:id/delete", genreController.deleteGenre);
 
 module.exports = { router };
