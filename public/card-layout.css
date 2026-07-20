@@ -32,16 +32,22 @@ header{
     font-size:2rem;
     max-width: 1400px;
     margin-inline: auto;
-     padding:1rem 0;
+    padding:1rem 0;
+    color: white;
 }
 .header-wrapper{
      background-color:rgb(82, 14, 14);
 }
 header nav{
+    flex-grow: 1;
     display:flex;
-    justify-content: space-around;
-    gap:4rem;
-    margin-inline:auto;
+    padding:0 2rem;
+    justify-content: space-between;
+    padding:0 4rem;
+}
+header .links-container{
+    display:flex;
+    gap:2rem;
 }
 header a{
     color:white;
