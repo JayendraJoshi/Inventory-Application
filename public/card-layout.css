@@ -78,12 +78,11 @@ main form{
 }
 main .cards-container{ 
     display:grid;
-    grid-template-columns: repeat(2,minmax(100px,400px));
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
     justify-items: center;
     align-items: center;
     padding: 4rem;
     gap:2rem;
-    margin:auto ;
 }
 main .card{
     background-color: rgba(99, 96, 96, 0.363);
@@ -94,6 +93,9 @@ main .card{
     display: flex;
     overflow: hidden;
 }
+svg{
+    height:30px;
+}
 .card .url-container{
     flex-grow:1;
 }
@@ -103,8 +105,9 @@ main .card{
 }
 .card button:hover{
     cursor: pointer;
-    padding:1rem;
+    background-color:rgb(82, 14, 14);
 }
+
 main .card a{
     text-decoration: none;
     color:white;
@@ -114,6 +117,7 @@ main .card a{
     font-size:2rem;
     padding:1rem;
 }
+
 .footer-wrapper{
       background-color:rgb(82, 14, 14);
 }
@@ -133,7 +137,6 @@ footer a{
     text-decoration: none;
     color:white;
 }
-svg{
+footer svg{
     filter:invert(1);
-    height:30px;
 }

@@ -64,6 +64,16 @@ main{
     color:white;
     gap:2rem;
 }
+main button{
+   background-color: transparent;
+}
+main button:hover{
+    cursor: pointer;
+}
+main svg{
+    height:30px;
+    background-color: transparent;
+}
 table{
     color:white;
     border-collapse:collapse;
@@ -101,7 +111,7 @@ footer a{
     text-decoration: none;
     color:white;
 }
-svg{
+footer svg{
     filter:invert(1);
-    height:30px;
+    height: 30px;
 }
