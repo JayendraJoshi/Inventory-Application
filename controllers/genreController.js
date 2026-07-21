@@ -12,13 +12,14 @@ const renderMoviesOfGenrePage = async (req, res) => {
   res.render("movies-of-genre", { movies: movies, genre: genre[0] });
 };
 
-const renderAddGenrePage = async (req, res) => {
-  res.render("add-genre");
+const renderAddGenreDialog = async (req, res) => {
+  const dialog = document.querySelector("#add-genre-dialog");
+  dialog.showModal();
 };
 
 const addGenre = async (req, res) => {
-  const { name, description } = req.body;
-  await db.insertGenre(name, description);
+  const { name } = req.body;
+  await db.insertGenre(name);
   const genres = await db.getAllGenres();
   res.redirect("/genres");
 };
@@ -33,6 +34,5 @@ module.exports = {
   renderAllGenrePage,
   renderMoviesOfGenrePage,
   addGenre,
-  renderAddGenrePage,
   deleteGenre,
 };

@@ -18,9 +18,19 @@ p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
 
-/** Styles*/
+/* Variables */
+:root{
+    --secondary-bg-color:hsl(1, 61%, 27%);
+    --primary-bg-color:hsl(0,0%,0%);
+    --primary-font-color: hsl(0, 0%, 100%);
+    --card-color:hsl(0,0%,10%);
+    --card-selected-color:hsl(0,0%,30%);
+    --button-selected-color:hsl(0, 0%, 60%);
+    --action-color-delete:hsl(0, 100%, 30%);
+}
+/* Styles*/
 body{
-    background-color: rgb(37, 37, 36);
+    background-color: hsl(0, 0%, 5%);
     display:flex;
     flex-direction: column;
     font-family: 'Arimo','sans-serif';
@@ -36,14 +46,15 @@ header{
     color: white;
 }
 .header-wrapper{
-     background-color:rgb(82, 14, 14);
+     background-color:var(--secondary-bg-color);
+     z-index: 2;
 }
 header nav{
     flex-grow: 1;
     display:flex;
     padding:0 2rem;
     justify-content: space-between;
-    padding:0 4rem;
+    padding:0 3rem;
 }
 header .links-container{
     display:flex;
@@ -54,6 +65,12 @@ header a{
     text-decoration: none;
      display: flex;
     align-items: center;
+    padding:0 1rem;
+}
+.links-container a:hover{
+    background-color: white;
+    color:black;
+    border-radius:8px;
 }
 .main-wrapper{
     flex-grow: 1;
@@ -75,7 +92,17 @@ main form{
     padding:1rem 2rem;
     border-radius: 16px;
     cursor: pointer;
+    width: 8rem;
+    margin-inline:auto;
+    text-align: center;
 }
+.add-button svg{
+    width:100%;
+}
+.add-button:hover{
+   background-color: var(--button-selected-color);
+}
+
 main .cards-container{ 
     display:grid;
     grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
@@ -85,13 +112,20 @@ main .cards-container{
     gap:2rem;
 }
 main .card{
-    background-color: rgba(99, 96, 96, 0.363);
+    background-color: var(--card-color);
     border-radius: 8px;
     height: 100%;
     width: 100%;
     min-height: 150px;
     display: flex;
     overflow: hidden;
+    max-width: 500px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+.url-container:hover{
+    background-color: var(--card-selected-color);
 }
 svg{
     height:30px;
@@ -105,9 +139,14 @@ svg{
 }
 .card button:hover{
     cursor: pointer;
-    background-color:rgb(82, 14, 14);
+      background-color: var(--action-color-delete);
 }
-
+.card button{
+    border:none;
+}
+.card .url-container a:hover{
+     background-color:var(--card-selected-color);
+}
 main .card a{
     text-decoration: none;
     color:white;
@@ -119,15 +158,15 @@ main .card a{
 }
 
 .footer-wrapper{
-      background-color:rgb(82, 14, 14);
-}
+       background-color:var(--secondary-bg-color);
+        z-index: 2;
+    }
 footer{
     min-height:5vh;
     display:flex;
     justify-content: center;
     align-items: center;
     gap:2rem;
-    background-color:rgb(82, 14, 14);
     color:white;
     max-width: 1400px;
     margin-inline: auto;
