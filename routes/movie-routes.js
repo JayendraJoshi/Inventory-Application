@@ -4,11 +4,11 @@ const movieController = require("../controllers/movie-controller");
 
 router.get("/", movieController.renderAllMoviesPage);
 
+router.get("/new", movieController.renderAddMoviePage);
+
 router.get("/:id", movieController.renderMoviePage);
 
-router.post("/new", () => {
-  //Add new film
-});
+router.post("/new", movieController.addMovie);
 
 router.post("/:id/delete", movieController.deleteMovie);
 

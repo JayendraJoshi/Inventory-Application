@@ -39,6 +39,12 @@ const getMovie = async (movieId) => {
   return rows[0];
 };
 
+const insertMovie = async (genreId, studioId, name, description) => {
+  const query = `INSERT INTO movies (name,description,genre_id,studio_id) VALUES
+  ($1,$2,$3,$4);`;
+  await pool.query(query, [name, description, genreId, studioId]);
+};
+
 const deleteMovie = async (movieId) => {
   const query = `DELETE FROM movies WHERE id = $1;`;
   await pool.query(query, [movieId]);
@@ -102,4 +108,5 @@ module.exports = {
   insertStudio,
   updateStudio,
   updateGenre,
+  insertMovie,
 };

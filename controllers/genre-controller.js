@@ -20,7 +20,7 @@ const renderAddGenreDialog = async (req, res) => {
 const addGenre = async (req, res) => {
   const { name } = req.body;
   await db.insertGenre(name);
-  const genres = await db.getAllGenres();
+  const genres = await db.getAllGenresASC();
   res.redirect("/genres");
 };
 

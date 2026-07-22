@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory App</title>
+</head>
+<body>
+    <div class="header-wrapper">
+        <header>
+            <%- include('partials/navbar') %>
+        </header>
+    </div>
+    <div class="main-wrapper">
+        <h1>Add a Movie</h1>
+        <form action="/movies/new" method="post">
+            <label>Name<input required name="name"></label>
+            <label>Description<textarea required name="description"></textarea></label>
+            <label for="select-genre"></label> 
+            <select id="select-genre" name="genre_id" required>
+                <% genres.forEach(genre=>{%>
+                    <option value="<%= genre.id%>">
+                        <%= genre.name %>
+                    </option>
+                <%})%>
+            </select>
+            <label for="select-studio"></label>
+            <select id="select-studio" name="studio_id">
+                <option value="">No studio</option>
+                <% studios.forEach(studio=>{%>
+                    <option value="<%= studio.id%>">
+                        <%= studio.name %>
+                    </option>
+                <%})%>
+            </select>
+            <button type="submit">Add</button>
+            <a href="/movies">Cancel</a>
+        </form>
+    </div>
+    <div class="footer-wrapper">
+         <%-include('partials/footer')%>
+    </div>
+</body>
+</html>

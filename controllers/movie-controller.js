@@ -2,6 +2,7 @@ const db = require("../db/database");
 
 const renderAllMoviesPage = async (req, res) => {
   const movies = await db.getAllMoviesASC();
+  console.log(movies);
   res.render("all-movies", { movies: movies });
 };
 
@@ -18,4 +19,24 @@ const renderMoviePage = async (req, res) => {
   res.render("movie", { movie: movie, studio: studio, genre: genre });
 };
 
-module.exports = { renderAllMoviesPage, deleteMovie, renderMoviePage };
+const renderAddMoviePage = async (req, res) => {
+  const genres = await db.getAllGenresASC();
+  const studios = await db.getAllStudiosASC();
+  res.render("add-movie", { genres: genres, studios: studios });
+};
+
+const addMovie = async (req, res) => {
+  const { name, description, genre_id, studio_id } = req.body;
+  const studioId = studio_id || null;
+  await db.insertMovie(genre_id, studioId, name, description);
+  const movies = await db.getAllMoviesASC();
+  res.redirect("/movies");
+};
+
+module.exports = {
+  renderAllMoviesPage,
+  deleteMovie,
+  renderMoviePage,
+  renderAddMoviePage,
+  addMovie,
+};
