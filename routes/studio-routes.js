@@ -10,4 +10,6 @@ router.post("/new", studioController.addStudio);
 
 router.post("/:id/delete", studioController.deleteStudio);
 
+router.post("/:id/edit", studioController.editStudio);
+
 module.exports = { router };

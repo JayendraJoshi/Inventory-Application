@@ -1,7 +1,7 @@
 const db = require("../db/database");
 
 const renderAllGenrePage = async (req, res) => {
-  const genres = await db.getAllGenres();
+  const genres = await db.getAllGenresASC();
   res.render("all-genres", { genres: genres });
 };
 
@@ -30,9 +30,17 @@ const deleteGenre = async (req, res) => {
   res.redirect("/genres");
 };
 
+const editGenre = async (req, res) => {
+  const genreId = Number(req.params.id);
+  const { name } = req.body;
+  await db.updateGenre(genreId, name);
+  res.redirect("/genres");
+};
+
 module.exports = {
   renderAllGenrePage,
   renderMoviesOfGenrePage,
   addGenre,
   deleteGenre,
+  editGenre,
 };

@@ -24,9 +24,17 @@ const addStudio = async (req, res) => {
   res.redirect("/studios");
 };
 
+const editStudio = async (req, res) => {
+  const studioId = Number(req.params.id);
+  const { name, description } = req.body;
+  await db.updateStudio(studioId, name, description);
+  res.redirect("/studios");
+};
+
 module.exports = {
   renderAllStudiosPage,
   deleteStudio,
   renderStudioPage,
   addStudio,
+  editStudio,
 };

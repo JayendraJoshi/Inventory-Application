@@ -5,8 +5,8 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-const getAllGenres = async () => {
-  const { rows } = await pool.query(`SELECT * FROM genres`);
+const getAllGenresASC = async () => {
+  const { rows } = await pool.query(`SELECT * FROM genres ORDER BY name ASC`);
   return rows;
 };
 
@@ -67,6 +67,13 @@ const insertStudio = async (name, description) => {
   await pool.query(query, [name, description]);
 };
 
+const updateStudio = async (id, name, description) => {
+  const query = `UPDATE studios SET name = $1,
+  description = $2 
+  WHERE id = $3;`;
+  await pool.query(query, [name, description, id]);
+};
+
 const insertGenre = async (name) => {
   const query = `INSERT INTO genres (name)
     VALUES($1)
@@ -74,9 +81,14 @@ const insertGenre = async (name) => {
   await pool.query(query, [name]);
 };
 
+const updateGenre = async (id, name) => {
+  const query = `UPDATE genres SET name = $1 WHERE id= $2;`;
+  await pool.query(query, [name, id]);
+};
+
 module.exports = {
   pool,
-  getAllGenres,
+  getAllGenresASC,
   getGenre,
   getMoviesOfGenre,
   getAllMoviesASC,
@@ -88,4 +100,6 @@ module.exports = {
   getMovie,
   getStudio,
   insertStudio,
+  updateStudio,
+  updateGenre,
 };

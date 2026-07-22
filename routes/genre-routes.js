@@ -10,4 +10,6 @@ router.post("/new", genreController.addGenre);
 
 router.post("/:id/delete", genreController.deleteGenre);
 
+router.post("/:id/edit", genreController.editGenre);
+
 module.exports = { router };
