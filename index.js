@@ -4,7 +4,7 @@ const path = require("node:path");
 const { router: studioRouter } = require("./routes/studio-routes");
 const { router: genreRouter } = require("./routes/genre-routes");
 const { router: movieRouter } = require("./routes/movie-routes");
-const { renderIndexPage } = require("./controllers/indexController");
+const { renderIndexPage } = require("./controllers/index-controller");
 const PORT = 3000;
 
 const assetsPath = path.join(__dirname, "public");

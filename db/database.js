@@ -61,6 +61,12 @@ const deleteStudio = async (studioId) => {
   await pool.query(query, [studioId]);
 };
 
+const insertStudio = async (name, description) => {
+  const query = `INSERT INTO studios (name,description) 
+  VALUES($1,$2);`;
+  await pool.query(query, [name, description]);
+};
+
 const insertGenre = async (name) => {
   const query = `INSERT INTO genres (name)
     VALUES($1)
@@ -81,4 +87,5 @@ module.exports = {
   deleteGenre,
   getMovie,
   getStudio,
+  insertStudio,
 };

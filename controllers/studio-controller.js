@@ -1,5 +1,4 @@
 const db = require("../db/database");
-const studioController = require("../controllers/studioController");
 
 const renderAllStudiosPage = async (req, res) => {
   const studios = await db.getAllStudiosASC();
@@ -17,4 +16,17 @@ const deleteStudio = async (req, res) => {
   res.redirect(previousPage);
 };
 
-module.exports = { renderAllStudiosPage, deleteStudio, renderStudioPage };
+const renderStudioEditForm = async (req, res) => {};
+
+const addStudio = async (req, res) => {
+  const { name, description } = req.body;
+  await db.insertStudio(name, description);
+  res.redirect("/studios");
+};
+
+module.exports = {
+  renderAllStudiosPage,
+  deleteStudio,
+  renderStudioPage,
+  addStudio,
+};

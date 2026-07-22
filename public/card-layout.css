@@ -84,11 +84,11 @@ main{
     max-width: 1400px;
     margin-inline: auto;
 }
-main form{
+main .card form{
     grid-column: 1/3;
     margin-inline: auto;
 }
-.add-button{
+.open-add-dialog-button{
     padding:1rem 2rem;
     border-radius: 16px;
     cursor: pointer;
@@ -96,10 +96,10 @@ main form{
     margin-inline:auto;
     text-align: center;
 }
-.add-button svg{
+.open-add-dialog-button svg{
     width:100%;
 }
-.add-button:hover{
+.open-add-dialog-button:hover{
    background-color: var(--button-selected-color);
 }
 
@@ -156,7 +156,52 @@ main .card a{
     font-size:2rem;
     padding:1rem;
 }
-
+dialog::backdrop {
+  background-color: hsl(0,0%,0%,0.8);
+}
+dialog{
+    position: flex;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding:2rem;
+  border-radius:16px;
+  gap:1rem;
+}
+#add-dialog form, #edit-dialog form{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+#add-dialog form input,
+#edit-dialog form input,
+#add-dialog form textarea,
+#edit-dialog form textarea
+{
+     border: 1px solid black;
+}
+#add-dialog form label,#edit-dialog form label{
+     display:flex;
+    flex-direction: column;
+}
+.form-button-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+.form-button-container button{
+    padding:8px 16px;
+    border-radius: 8px;
+}
+.cancel-button{
+    background-color: var(--action-color-delete);
+    color:white;
+    border:none;
+}
+.add-button{
+    background-color: green;
+    color:white;
+    border:none;
+}
 .footer-wrapper{
        background-color:var(--secondary-bg-color);
         z-index: 2;
