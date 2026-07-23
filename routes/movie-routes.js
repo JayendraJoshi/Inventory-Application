@@ -8,8 +8,12 @@ router.get("/new", movieController.renderAddMoviePage);
 
 router.get("/:id", movieController.renderMoviePage);
 
+router.get("/:id/edit", movieController.renderUpdateMoviePage);
+
 router.post("/new", movieController.addMovie);
 
 router.post("/:id/delete", movieController.deleteMovie);
+
+router.post("/:id/edit", movieController.updateMovie);
 
 module.exports = { router };

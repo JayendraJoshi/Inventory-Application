@@ -50,6 +50,16 @@ const deleteMovie = async (movieId) => {
   await pool.query(query, [movieId]);
 };
 
+const updateMovie = async (id, genreId, studioId, name, description) => {
+  const query = `UPDATE movies 
+  SET name = $1,
+  description = $2,
+  genre_id = $3,
+  studio_id = $4 
+  WHERE id = $5;`;
+  await pool.query(query, [name, description, genreId, studioId, id]);
+};
+
 const getAllStudiosASC = async () => {
   const { rows } = await pool.query(`SELECT * FROM studios ORDER BY name ASC;`);
   return rows;
@@ -109,4 +119,5 @@ module.exports = {
   updateStudio,
   updateGenre,
   insertMovie,
+  updateMovie,
 };

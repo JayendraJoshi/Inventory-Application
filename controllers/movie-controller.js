@@ -33,10 +33,28 @@ const addMovie = async (req, res) => {
   res.redirect("/movies");
 };
 
+const renderUpdateMoviePage = async (req, res) => {
+  const movieId = req.params.id;
+  const genres = await db.getAllGenresASC();
+  const studios = await db.getAllStudiosASC();
+  const movie = await db.getMovie(movieId);
+  res.render("edit-movie", { genres: genres, studios: studios, movie: movie });
+};
+
+const updateMovie = async (req, res) => {
+  const { name, description, genre_id, studio_id } = req.body;
+  const studioId = studio_id || null;
+  const movieId = req.params.id;
+  await db.updateMovie(movieId, genre_id, studioId, name, description);
+  res.redirect("/movies");
+};
+
 module.exports = {
   renderAllMoviesPage,
   deleteMovie,
   renderMoviePage,
   renderAddMoviePage,
   addMovie,
+  updateMovie,
+  renderUpdateMoviePage,
 };

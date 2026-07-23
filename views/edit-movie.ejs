@@ -15,15 +15,21 @@
     <div class="main-wrapper">
         <main>
         <h1>Add a Movie</h1>
-            <form action="/movies/new" method="post">
-                <label>Name<input required name="name"></label>
-                <label>Description<textarea required name="description"></textarea></label>
+            <form action="/movies/<%= movie.id %>/edit" method="post">
+                <label>Name<input required name="name" value="<%=movie.name%>"></label>
+                <label>Description<textarea required name="description"><%=movie.description%></textarea></label>
                 <label for="select-genre"></label> 
                 <select id="select-genre" name="genre_id" required>
                     <% genres.forEach(genre=>{%>
+                        <% if(genre.id == movie.genre_id){%>
+                            <option value="<%= genre.id%>" selected>
+                            <%= genre.name %>
+                        </option>
+                        <%}else{%>
                         <option value="<%= genre.id%>">
                             <%= genre.name %>
                         </option>
+                        <%}%>                        
                     <%})%>
                 </select>
                 <label for="select-studio"></label>
@@ -37,7 +43,7 @@
                 </select>
                 <div class="button-container">
                        <a href="/movies">Cancel</a>
-                    <button type="submit">Add</button>
+                    <button type="submit">Update</button>
                 </div>
             </form>
          </main>
