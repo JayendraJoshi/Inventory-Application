@@ -19,15 +19,17 @@ const deleteStudio = async (req, res) => {
 const renderStudioEditForm = async (req, res) => {};
 
 const addStudio = async (req, res) => {
-  const { name, description } = req.body;
-  await db.insertStudio(name, description);
+  const { name, description, img_url } = req.body;
+  const imgUrl = img_url || null;
+  await db.insertStudio(name, description, imgUrl);
   res.redirect("/studios");
 };
 
 const editStudio = async (req, res) => {
   const studioId = Number(req.params.id);
-  const { name, description } = req.body;
-  await db.updateStudio(studioId, name, description);
+  const { name, description, img_url } = req.body;
+  const imgUrl = img_url || null;
+  await db.updateStudio(studioId, name, description, imgUrl);
   res.redirect("/studios");
 };
 

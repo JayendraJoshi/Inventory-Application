@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Inventory App</title>
-    <link rel="stylesheet" href="/allStudios.css" />
+    <link rel="stylesheet" href="/movie-details.css" />
   </head>
   <body>
     <div class="header-wrapper">
@@ -10,11 +10,26 @@
     </div>
     <div class="main-wrapper">
       <main>
-        <h1><%= movie.name %></h1>
-        <img src="<%=movie.img_url%>" />
-        <p><%= genre.name %></p>
-        <p><%= studio ? studio.name : 'Unknown' %></p>
-        <p><%= movie.description %></p>
+        <h1 id="name"><%= movie.name %></h1>
+        <div class="img-container">
+          <% if(movie.img_url){%>
+            <img src="<%=movie.img_url%>" />
+          <%}else{%>
+            <img src="/images/img-placeholder.png" />
+          <%}%>
+        </div>
+        <div class="info-section">
+          <h2>Genre</h2>
+          <p id="genre-name"><%= genre.name %></p>
+        </div>
+        <div class="info-section">
+          <h2>Studio</h2>
+          <p id="studio-name"><%= studio ? studio.name : 'Unknown' %></p>
+        </div>
+        <div class="info-section">
+          <h2>Description</h2>
+          <p id="movie-description"><%= movie.description %></p>
+        </div>
       </main>
     </div>
     <div class="footer-wrapper"><%-include('partials/footer')%></div>

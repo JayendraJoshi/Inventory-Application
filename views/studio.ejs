@@ -2,18 +2,29 @@
   <head>
     <meta charset="UTF-8" />
     <title>Inventory App</title>
-    <link rel="stylesheet" href="/allStudios.css" />
+    <link rel="stylesheet" href="/movie-details.css" />
   </head>
   <body>
     <div class="header-wrapper">
       <header><%- include('partials/navbar') %></header>
     </div>
     <div class="main-wrapper">
+     <div class="main-wrapper">
       <main>
-        <h1><%= studio.name %></h1>
-        <img src="<%=studio.img_url%>" />
-        <p><%= studio.description %></p>
+        <h1 id="name"><%= studio.name %></h1>
+        <div class="img-container">
+          <% if(studio.img_url){%>
+            <img src="<%=studio.img_url%>" />
+          <%}else{%>
+            <img src="/images/img-placeholder.png" />
+          <%}%>
+        </div>
+        <div class="info-section">
+          <h2>Description</h2>
+          <p id="movie-description"><%= studio.description %></p>
+        </div>
       </main>
+    </div>
     </div>
     <div class="footer-wrapper"><%-include('partials/footer')%></div>
   </body>

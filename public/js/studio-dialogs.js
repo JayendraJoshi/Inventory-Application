@@ -12,8 +12,11 @@ const cancelEditDialogButton = document.querySelector(
 const editDialogNameInput = document.querySelector(
   '#edit-dialog input[name="name"]',
 );
-const editDialogDescriptionInput = document.querySelector(
+const editDialogDescriptionTextarea = document.querySelector(
   '#edit-dialog textarea[name="description"]',
+);
+const editDialogImgInput = document.querySelector(
+  "#edit-dialog input[name=img_url",
 );
 const editForm = document.querySelector("#edit-dialog form");
 
@@ -27,8 +30,9 @@ cancelAddDialogButton.addEventListener("click", () => {
 editButtons.forEach((button) => {
   button.addEventListener("click", () => {
     editDialogNameInput.value = button.dataset.name;
-    editDialogDescriptionInput.value = button.dataset.description;
+    editDialogDescriptionTextarea.value = button.dataset.description;
     editForm.action = `/studios/${button.dataset.id}/edit`;
+    editDialogImgInput.value = button.dataset.imgUrl;
     editDialog.showModal();
   });
 });

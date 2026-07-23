@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory App</title>
-    <link rel="stylesheet" href="/details-layout.css">
+    <link rel="stylesheet" href="/movie-form-page.css">
 </head>
 <body>
     <div class="header-wrapper">
@@ -14,7 +14,7 @@
     </div>
     <div class="main-wrapper">
         <main>
-        <h1>Add a Movie</h1>
+        <h1>Edit Movie</h1>
             <form action="/movies/<%= movie.id %>/edit" method="post">
                 <label>Name<input required name="name" value="<%=movie.name%>"></label>
                 <label>Description<textarea required name="description"><%=movie.description%></textarea></label>

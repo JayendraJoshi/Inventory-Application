@@ -31,7 +31,9 @@
                                 class="edit-button"
                                 data-name="<%=studio.name%>"
                                 data-description="<%=studio.description%>"
-                                data-id="<%=studio.id%>">Edit
+                                data-id="<%=studio.id%>"
+                                data-img-url="<%=studio.img_url%>"
+                                >Edit
                             </button>
                         </div>
                     </div>
@@ -44,6 +46,7 @@
                     <h2>Add a Studio</h2>
                     <label for="name">Name<input type="text" name="name" required></label>
                     <label for="description">Description<textarea name="description" required></textarea></label>
+                     <label for="img_url">Image-Url<input name="img_url" id="img_url" value=""></label>
                     <div class="form-button-container">
                         <button type="button" class="cancel-button">Cancel</button>
                         <button type="submit" class="add-button">Add</button>
@@ -55,6 +58,7 @@
                         <h2>Edit Studio</h2>
                         <label for="name">Name<input type="text" name="name" required></label>
                         <label for="description">Description<textarea name="description" required></textarea></label>
+                        <label for="img_url">Image-Url<input name="img_url" id="img_url"></label>
                         <div class="form-button-container">
                             <button type="button" class="cancel-button">Cancel</button>
                             <button type="submit" class="add-button">Update</button>

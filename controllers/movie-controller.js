@@ -16,6 +16,7 @@ const renderMoviePage = async (req, res) => {
   const movie = await db.getMovie(req.params.id);
   const studio = await db.getStudio(movie.studio_id);
   const genre = await db.getGenre(movie.genre_id);
+  console.log(genre);
   res.render("movie", { movie: movie, studio: studio, genre: genre });
 };
 
@@ -26,9 +27,10 @@ const renderAddMoviePage = async (req, res) => {
 };
 
 const addMovie = async (req, res) => {
-  const { name, description, genre_id, studio_id } = req.body;
+  const { name, description, genre_id, studio_id, image_url } = req.body;
   const studioId = studio_id || null;
-  await db.insertMovie(genre_id, studioId, name, description);
+  const imageUrl = image_url || null;
+  await db.insertMovie(genre_id, studioId, name, description, imageUrl);
   const movies = await db.getAllMoviesASC();
   res.redirect("/movies");
 };

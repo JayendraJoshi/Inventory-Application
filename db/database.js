@@ -14,7 +14,7 @@ const getGenre = async (genreId) => {
   const { rows } = await pool.query(`SELECT * FROM genres WHERE id = $1`, [
     genreId,
   ]);
-  return rows;
+  return rows[0];
 };
 
 const deleteGenre = async (genreId) => {
@@ -39,10 +39,10 @@ const getMovie = async (movieId) => {
   return rows[0];
 };
 
-const insertMovie = async (genreId, studioId, name, description) => {
-  const query = `INSERT INTO movies (name,description,genre_id,studio_id) VALUES
-  ($1,$2,$3,$4);`;
-  await pool.query(query, [name, description, genreId, studioId]);
+const insertMovie = async (genreId, studioId, name, description, imageUrl) => {
+  const query = `INSERT INTO movies (name,description,genre_id,studio_id,img_url) VALUES
+  ($1,$2,$3,$4,$5);`;
+  await pool.query(query, [name, description, genreId, studioId, imageUrl]);
 };
 
 const deleteMovie = async (movieId) => {
@@ -77,17 +77,18 @@ const deleteStudio = async (studioId) => {
   await pool.query(query, [studioId]);
 };
 
-const insertStudio = async (name, description) => {
-  const query = `INSERT INTO studios (name,description) 
-  VALUES($1,$2);`;
-  await pool.query(query, [name, description]);
+const insertStudio = async (name, description, imgUrl) => {
+  const query = `INSERT INTO studios (name,description, img_url) 
+  VALUES($1,$2,$3);`;
+  await pool.query(query, [name, description, imgUrl]);
 };
 
-const updateStudio = async (id, name, description) => {
+const updateStudio = async (id, name, description, imgUrl) => {
   const query = `UPDATE studios SET name = $1,
-  description = $2 
-  WHERE id = $3;`;
-  await pool.query(query, [name, description, id]);
+  description = $2,
+  img_url = $3,
+  WHERE id = $4;`;
+  await pool.query(query, [name, description, imgUrl, id]);
 };
 
 const insertGenre = async (name) => {
