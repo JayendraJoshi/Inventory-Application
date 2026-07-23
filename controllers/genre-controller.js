@@ -9,7 +9,7 @@ const renderMoviesOfGenrePage = async (req, res) => {
   const genreId = Number(req.params.id);
   const genre = await db.getGenre(genreId);
   const movies = await db.getMoviesOfGenre(genreId);
-  res.render("movies-of-genre", { movies: movies, genre: genre[0] });
+  res.render("movies-of-genre", { movies: movies, genre: genre });
 };
 
 const renderAddGenreDialog = async (req, res) => {
