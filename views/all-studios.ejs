@@ -44,9 +44,10 @@
         <dialog id="add-dialog">
                 <form method="post" action="/studios/new">
                     <h2>Add a Studio</h2>
-                    <label for="name">Name<input type="text" name="name" required></label>
-                    <label for="description">Description<textarea name="description" required></textarea></label>
-                     <label for="img_url">Image-Url<input name="img_url" id="img_url" value=""></label>
+                     <div class="error-message"></div>
+                    <label for="name">Name<input type="text" name="name" ></label>
+                    <label for="description">Description<textarea name="description" ></textarea></label>
+                    <label for="img_url">Image-Url<input name="img_url" id="img_url" value=""></label>
                     <div class="form-button-container">
                         <button type="button" class="cancel-button">Cancel</button>
                         <button type="submit" class="add-button">Add</button>
@@ -56,8 +57,9 @@
                 <dialog id="edit-dialog" >
                     <form method="post" action="">
                         <h2>Edit Studio</h2>
-                        <label for="name">Name<input type="text" name="name" required></label>
-                        <label for="description">Description<textarea name="description" required></textarea></label>
+                         <div class="error-message"></div>
+                        <label for="name">Name<input type="text" name="name" ></label>
+                        <label for="description">Description<textarea name="description" ></textarea></label>
                         <label for="img_url">Image-Url<input name="img_url" id="img_url"></label>
                         <div class="form-button-container">
                             <button type="button" class="cancel-button">Cancel</button>

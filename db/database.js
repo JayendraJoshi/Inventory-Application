@@ -86,7 +86,7 @@ const insertStudio = async (name, description, imgUrl) => {
 const updateStudio = async (id, name, description, imgUrl) => {
   const query = `UPDATE studios SET name = $1,
   description = $2,
-  img_url = $3,
+  img_url = $3
   WHERE id = $4;`;
   await pool.query(query, [name, description, imgUrl, id]);
 };
