@@ -1,4 +1,5 @@
 const db = require("../db/database");
+const { body, validationResult } = require("express-validator");
 
 const renderAllGenrePage = async (req, res) => {
   const genres = await db.getAllGenresASC();
@@ -17,12 +18,35 @@ const renderAddGenreDialog = async (req, res) => {
   dialog.showModal();
 };
 
-const addGenre = async (req, res) => {
-  const { name } = req.body;
-  await db.insertGenre(name);
-  const genres = await db.getAllGenresASC();
-  res.redirect("/genres");
-};
+const validateGenreName = [
+  body("name")
+    .trim()
+    .notEmpty()
+    .withMessage("Name can not be empty")
+    .isAlpha()
+    .withMessage("Name must only contain letters.")
+    .isLength({
+      max: 20,
+    })
+    .withMessage("Name can not be longer than 20 characters"),
+];
+
+const addGenre = [
+  validateGenreName,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+    const { name } = req.body;
+    await db.insertGenre(name);
+    return res.status(201).json({
+      success: true,
+    });
+  },
+];
 
 const deleteGenre = async (req, res) => {
   const genreId = Number(req.params.id);

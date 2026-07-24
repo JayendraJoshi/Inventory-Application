@@ -1,7 +1,7 @@
 {
   "name": "inventory-application",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sources:",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -23,6 +23,7 @@
     "dotenv": "^17.4.2",
     "ejs": "^6.0.1",
     "express": "^5.2.1",
+    "express-validator": "^7.3.2",
     "pg": "^8.22.0"
   }
 }

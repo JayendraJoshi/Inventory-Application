@@ -21,7 +21,7 @@ p, h1, h2, h3, h4, h5, h6 {
 /* Variables */
 :root{
     --secondary-bg-color:hsl(1, 61%, 27%);
-    --primary-bg-color:hsl(0,0%,0%);
+    --primary-bg-color:hsl(0,0%,15%);
     --primary-font-color: hsl(0, 0%, 100%);
     --card-color:hsl(0,0%,10%);
     --card-selected-color:hsl(0,0%,30%);
@@ -30,7 +30,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 /* Styles*/
 body{
-    background-color: hsl(0, 0%, 5%);
+    background-color: var(--primary-bg-color);
     display:flex;
     flex-direction: column;
     font-family: 'Arimo','sans-serif';
