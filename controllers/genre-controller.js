@@ -54,12 +54,23 @@ const deleteGenre = async (req, res) => {
   res.redirect("/genres");
 };
 
-const editGenre = async (req, res) => {
-  const genreId = Number(req.params.id);
-  const { name } = req.body;
-  await db.updateGenre(genreId, name);
-  res.redirect("/genres");
-};
+const editGenre = [
+  validateGenreName,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+    const genreId = Number(req.params.id);
+    const { name } = req.body;
+    await db.updateGenre(genreId, name);
+    return res.status(200).json({
+      success: true,
+    });
+  },
+];
 
 module.exports = {
   renderAllGenrePage,

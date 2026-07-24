@@ -37,7 +37,7 @@ cancelEditDialogButton.addEventListener("click", () => {
 
 //Handle addDialog form submission
 addDialogForm.addEventListener("submit", async (e) => {
-  const errorElement = document.querySelector("#error-message");
+  const errorElement = document.querySelector("#add-dialog .error-message");
   errorElement.textContent = "";
   e.preventDefault();
   const formData = new FormData(addDialogForm);
@@ -60,5 +60,30 @@ addDialogForm.addEventListener("submit", async (e) => {
     return;
   }
   addDialog.close();
+  window.location.reload();
+});
+
+editForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const errorElement = document.querySelector("#edit-dialog .error-message");
+  errorElement.textContent = "";
+  const formData = new FormData(editForm);
+  const response = await fetch(editForm.action, {
+    method: editForm.method,
+    body: new URLSearchParams(formData),
+  });
+  const data = await response.json();
+
+  if (!response.ok) {
+    errorElement.replaceChildren(
+      ...data.errors.map((error) => {
+        const p = document.createElement("p");
+        p.textContent = error.msg;
+        return p;
+      }),
+    );
+    return;
+  }
+  editDialog.close();
   window.location.reload();
 });
