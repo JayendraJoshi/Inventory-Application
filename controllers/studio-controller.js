@@ -23,6 +23,7 @@ const validateStudio = [
   body("name")
     .trim()
     .notEmpty()
+    .withMessage("Name can not be empty")
     .isLength({
       max: 30,
     })

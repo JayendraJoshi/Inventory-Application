@@ -1,4 +1,5 @@
 const db = require("../db/database");
+const { body, validationResult } = require("express-validator");
 
 const renderAllMoviesPage = async (req, res) => {
   const movies = await db.getAllMoviesASC();
@@ -26,14 +27,50 @@ const renderAddMoviePage = async (req, res) => {
   res.render("add-movie", { genres: genres, studios: studios });
 };
 
-const addMovie = async (req, res) => {
-  const { name, description, genre_id, studio_id, image_url } = req.body;
-  const studioId = studio_id || null;
-  const imageUrl = image_url || null;
-  await db.insertMovie(genre_id, studioId, name, description, imageUrl);
-  const movies = await db.getAllMoviesASC();
-  res.redirect("/movies");
-};
+const validateMovie = [
+  body("name")
+    .trim()
+    .notEmpty()
+    .withMessage("Name can not be empty")
+    .isLength({
+      max: 30,
+    })
+    .withMessage("Name can not be longer than 30 characters"),
+  body("description")
+    .trim()
+    .optional({ values: "falsy" })
+    .isLength({
+      max: 1000,
+    })
+    .withMessage("Description can't be longer than 1000 characters"),
+  body("image_url")
+    .trim()
+    .optional({ values: "falsy" })
+    .isURL()
+    .withMessage("Needs to be an URL"),
+];
+
+const addMovie = [
+  validateMovie,
+  async (req, res) => {
+    const errors = validationResult(req);
+    const { name, description, genre_id, studio_id, image_url } = req.body;
+    if (!errors.isEmpty()) {
+      const genres = await db.getAllGenresASC();
+      const studios = await db.getAllStudiosASC();
+      return res.status(400).render("add-movie", {
+        errors: errors.array(),
+        genres: genres,
+        studios: studios,
+      });
+    }
+    const studioId = studio_id || null;
+    const imageUrl = image_url || null;
+    await db.insertMovie(genre_id, studioId, name, description, imageUrl);
+    const movies = await db.getAllMoviesASC();
+    res.redirect("/movies");
+  },
+];
 
 const renderUpdateMoviePage = async (req, res) => {
   const movieId = req.params.id;
@@ -43,13 +80,32 @@ const renderUpdateMoviePage = async (req, res) => {
   res.render("edit-movie", { genres: genres, studios: studios, movie: movie });
 };
 
-const updateMovie = async (req, res) => {
-  const { name, description, genre_id, studio_id } = req.body;
-  const studioId = studio_id || null;
-  const movieId = req.params.id;
-  await db.updateMovie(movieId, genre_id, studioId, name, description);
-  res.redirect("/movies");
-};
+const updateMovie = [
+  validateMovie,
+  async (req, res) => {
+    const movieId = req.params.id;
+    const { name, description, genre_id, studio_id } = req.body;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const genres = await db.getAllGenresASC();
+      const studios = await db.getAllStudiosASC();
+      const movie = await db.getMovie(movieId);
+      movie.name = name;
+      movie.description = description;
+      movie.studio_id = studio_id;
+      movie.genre_id = genre_id;
+      return res.status(400).render("edit-movie", {
+        errors: errors.array(),
+        genres: genres,
+        studios: studios,
+        movie: movie,
+      });
+    }
+    const studioId = studio_id || null;
+    await db.updateMovie(movieId, genre_id, studioId, name, description);
+    res.redirect("/movies");
+  },
+];
 
 module.exports = {
   renderAllMoviesPage,

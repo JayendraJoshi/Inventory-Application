@@ -16,8 +16,9 @@
         <main>
         <h1>Add a Movie</h1>
             <form action="/movies/new" method="post">
-                <label>Name<input required name="name"></label>
-                <label>Description<textarea required name="description"></textarea></label>
+                <%-include('partials/movie-errors') %>
+                <label>Name<input name="name"></label>
+                <label>Description<textarea name="description"></textarea></label>
                 <label for="select-genre"></label> 
                 <select id="select-genre" name="genre_id" required>
                     <% genres.forEach(genre=>{%>
@@ -27,7 +28,7 @@
                     <%})%>
                 </select>
                 <label for="select-studio"></label>
-                <select id="select-studio" name="studio_id">
+                <select id="select-studio" name="studio_id" required>
                     <option value="">No studio</option>
                     <% studios.forEach(studio=>{%>
                         <option value="<%= studio.id%>">

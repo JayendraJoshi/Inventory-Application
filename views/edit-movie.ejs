@@ -16,8 +16,9 @@
         <main>
         <h1>Edit Movie</h1>
             <form action="/movies/<%= movie.id %>/edit" method="post">
-                <label>Name<input required name="name" value="<%=movie.name%>"></label>
-                <label>Description<textarea required name="description"><%=movie.description%></textarea></label>
+                <%-include('partials/movie-errors') %>
+                <label>Name<input name="name" value="<%=movie.name%>"></label>
+                <label>Description<textarea name="description"><%=movie.description%></textarea></label>
                 <label for="select-genre"></label> 
                 <select id="select-genre" name="genre_id" required>
                     <% genres.forEach(genre=>{%>
@@ -34,9 +35,11 @@
                 </select>
                 <label for="select-studio"></label>
                 <select id="select-studio" name="studio_id">
-                    <option value="">No studio</option>
+                    <option value="" selected>No studio</option>
                     <% studios.forEach(studio=>{%>
-                        <option value="<%= studio.id%>">
+                        <option 
+                            value="<%= studio.id %>"
+                            <%= movie.studio_id == studio.id ? "selected" : "" %>>
                             <%= studio.name %>
                         </option>
                     <%})%>
