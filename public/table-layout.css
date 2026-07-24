@@ -18,7 +18,16 @@ input, button, textarea, select {
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
-
+/* Variables */
+:root{
+    --secondary-bg-color:hsl(1, 61%, 27%);
+    --primary-bg-color:hsl(0,0%,15%);
+    --primary-font-color: hsl(0, 0%, 100%);
+    --card-color:hsl(0,0%,10%);
+    --card-selected-color:hsl(0,0%,30%);
+    --button-selected-color:hsl(0, 0%, 60%);
+    --action-color-delete:hsl(0, 100%, 30%);
+}
 header{
     min-height:10vh;
     display:flex;
@@ -78,6 +87,9 @@ table{
     color:white;
     border-collapse:collapse;
 }
+button{
+    border:none;
+}
 th,td{
     border:1px solid white;
     padding:8px;
@@ -85,13 +97,23 @@ th,td{
 th{
     font-size:1.4rem;
 }
-
+svg{
+    filter:invert(1);
+}
+a{
+    text-decoration: none;
+    color:white;
+    text-decoration: underline;
+}
+.button-container{
+    display:flex;
+    gap:1rem;
+}
 body{
-    background-color: rgb(37, 37, 36);
+     background-color: var(--primary-bg-color);
     display:flex;
     flex-direction: column;
 }
-
 .footer-wrapper{
       background-color:rgb(82, 14, 14);
 }

@@ -4,6 +4,7 @@ icons:
 https://fontawesome.com/icons/brands/solid/github
 https://fontawesome.com/icons/classic/solid/trash
 https://fontawesome.com/icons/classic/solid/plus
+https://fontawesome.com/icons/classic/solid/pen-to-square
 
 movie images:
 https://de.wikipedia.org/wiki/Barbie_(Film)

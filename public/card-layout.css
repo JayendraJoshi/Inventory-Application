@@ -1,3 +1,4 @@
+/* Resets */
 * { 
     margin: 0;
     padding: 0;
@@ -19,22 +20,31 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 /* Variables */
-:root{
-    --secondary-bg-color:hsl(1, 61%, 27%);
-    --primary-bg-color:hsl(0,0%,15%);
-    --primary-font-color: hsl(0, 0%, 100%);
-    --card-color:hsl(0,0%,10%);
-    --card-selected-color:hsl(0,0%,30%);
-    --button-selected-color:hsl(0, 0%, 60%);
-    --action-color-delete:hsl(0, 100%, 30%);
+:root {
+    --background: hsl(220, 20%, 8%);
+    --surface: hsl(220, 15%, 14%);
+    --surface-hover: hsl(220, 15%, 20%);
+
+    --primary-red: hsl(0, 70%, 35%);
+    --primary-red-hover: hsl(0, 70%, 45%);
+
+    --text-main: hsl(0, 0%, 95%);
+    --text-muted: hsl(0, 0%, 70%);
+
+     --success: hsl(145, 65%, 38%);
+    --success-hover: hsl(145, 65%, 46%);
+
+      --accent: hsl(35, 90%, 55%);
+      --accent-hover: hsl(35, 90%, 65%);
 }
 /* Styles*/
 body{
-    background-color: var(--primary-bg-color);
+    background-color: var(--background);
     display:flex;
     flex-direction: column;
     font-family: 'Arimo','sans-serif';
 }
+/* Header */
 header{
     min-height:10vh;
     display:flex;
@@ -45,9 +55,12 @@ header{
     padding:1rem 0;
     color: white;
 }
-.header-wrapper{
-     background-color:var(--secondary-bg-color);
+.header-wrapper, .footer-wrapper{
+     background-color:var(--surface);
      z-index: 2;
+}
+.header-wrapper{
+     border-bottom: 3px solid var(--primary-red);
 }
 header nav{
     flex-grow: 1;
@@ -61,7 +74,7 @@ header .links-container{
     gap:2rem;
 }
 header a{
-    color:white;
+    color: var(--text-main);
     text-decoration: none;
      display: flex;
     align-items: center;
@@ -72,6 +85,8 @@ header a{
     color:black;
     border-radius:8px;
 }
+/* Main*/
+
 .main-wrapper{
     flex-grow: 1;
     display:flex;
@@ -84,10 +99,8 @@ main{
     max-width: 1400px;
     margin-inline: auto;
 }
-main .card form{
-    grid-column: 1/3;
-    margin-inline: auto;
-}
+
+/* addDialog*/
 .open-add-dialog-button{
     padding:1rem 2rem;
     border-radius: 16px;
@@ -95,15 +108,37 @@ main .card form{
     width: 8rem;
     margin-inline:auto;
     text-align: center;
+    background: var(--accent);
+    color: white;
+    border: none;
+
 }
 .open-add-dialog-button svg{
     width:100%;
 }
 .open-add-dialog-button:hover{
-   background-color: var(--button-selected-color);
+  background: var(--accent-hover)
+}
+.add-button {
+    background-color: var(--success);
+    color: var(--text-main);
+}
+.add-button:hover{
+    background-color: var(--success-hover);
+    cursor: pointer;
+}
+.cancel-button{
+    background-color: var(--primary-red);
+    color: var(--text-main);
+    border: none;
+}
+.cancel-button:hover{
+    background-color: var(--primary-red-hover);
+    cursor: pointer;
 }
 
-main .cards-container{ 
+/* cards */
+ .cards-container{ 
     display:grid;
     grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
     justify-items: center;
@@ -111,43 +146,28 @@ main .cards-container{
     padding: 4rem;
     gap:2rem;
 }
-main .card{
-    background-color: var(--card-color);
+.card{
+    background-color: var(--surface);
     border-radius: 8px;
     height: 100%;
     width: 100%;
     min-height: 150px;
     display: flex;
+    justify-content: space-between;
     overflow: hidden;
     max-width: 500px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255,255,255,.08);
+    background: var(--surface);
+    transition: transform .2s ease, background-color .2s ease;
 }
-
-
-.url-container:hover{
-    background-color: var(--card-selected-color);
-}
-svg{
-    height:30px;
-}
-.card .url-container{
-    flex-grow:1;
-}
-.card .button-container, .button-container form{
-    display: flex;
-    align-items: stretch;
-}
-.card button:hover{
+.card:hover {
+    transform: translateY(-4px);
+    background: var(--surface-hover);
     cursor: pointer;
-      background-color: var(--action-color-delete);
+    border-color:var(--primary-red);
 }
-.card button{
-    border:none;
-}
-.card .url-container a:hover{
-     background-color:var(--card-selected-color);
-}
-main .card a{
+.card a{
     text-decoration: none;
     color:white;
     display: flex;
@@ -155,34 +175,71 @@ main .card a{
     align-items: center;
     font-size:2rem;
     padding:1rem;
+    text-align: center;
 }
+.button-container {
+    background: rgba(255,255,255,0.03);
+    border-left: 1px solid rgba(255,255,255,.08);
+    flex: 0 0 100px;
+    display: flex;
+    background-color: var(--surface-hover);
+    border-left: 1px solid rgba(255,255,255,0.08);
+}
+.card button{
+    display: flex;
+    border:none;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.url-container{
+    flex-grow:1;
+}
+.button-container form, .button-container button {
+    flex-grow: 1;
+    display: flex;
+    text-align: center;
+}
+.edit-button, .delete-button{
+       background-color: var(--surface-hover);
+}
+.edit-button:hover {
+   background: rgba(255,255,255,0.12);
+    cursor: pointer;
+}
+.delete-button:hover {
+    background: hsl(0,70%,40%);
+    cursor: pointer;
+}
+svg{
+    height:30px;
+}
+/* Dialogs*/
 dialog::backdrop {
   background-color: hsl(0,0%,0%,0.8);
 }
 dialog{
-    position: flex;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding:2rem;
   border-radius:16px;
   gap:1rem;
+  background-color: var(--surface);
+  color:var(--text-main);
 }
-#add-dialog form, #edit-dialog form{
+form{
     display: flex;
     flex-direction: column;
     gap:1rem;
 }
-#add-dialog form input,
-#edit-dialog form input,
-#add-dialog form textarea,
-#edit-dialog form textarea
-{
+input,textarea{
      border: 1px solid black;
 }
-#add-dialog form label,#edit-dialog form label{
+label{
      display:flex;
     flex-direction: column;
+    gap:1rem;
 }
 .form-button-container{
     display: flex;
@@ -192,20 +249,10 @@ dialog{
     padding:8px 16px;
     border-radius: 8px;
 }
-.cancel-button{
-    background-color: var(--action-color-delete);
-    color:white;
-    border:none;
-}
-.add-button{
-    background-color: green;
-    color:white;
-    border:none;
-}
+/* footer*/
 .footer-wrapper{
-       background-color:var(--secondary-bg-color);
-        z-index: 2;
-    }
+     border-top: 3px solid var(--primary-red);
+}
 footer{
     min-height:5vh;
     display:flex;
@@ -215,7 +262,7 @@ footer{
     color:white;
     max-width: 1400px;
     margin-inline: auto;
-      padding:1rem 0;
+    padding:1rem 0;
 }
 footer a{
     text-decoration: none;
