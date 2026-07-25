@@ -3,7 +3,6 @@ const { body, validationResult } = require("express-validator");
 
 const renderAllMoviesPage = async (req, res) => {
   const movies = await db.getAllMoviesASC();
-  console.log(movies);
   res.render("all-movies", { movies: movies });
 };
 
@@ -17,7 +16,6 @@ const renderMoviePage = async (req, res) => {
   const movie = await db.getMovie(req.params.id);
   const studio = await db.getStudio(movie.studio_id);
   const genre = await db.getGenre(movie.genre_id);
-  console.log(genre);
   res.render("movie", { movie: movie, studio: studio, genre: genre });
 };
 
