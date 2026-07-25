@@ -12,12 +12,17 @@
         </div>
         <div class="main-wrapper">
              <main>
-            <h1><%= genre.name %> movies</h1>
+            <h1><%= genre.name %> Movies</h1>
             <table>
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Modify</th>
+                        <% if(movies.length > 0){%>
+                              <th>Name</th>
+                            <th>Modify</th>
+                        <%}else{%>
+                            <p>No <%= genre.name %> movies have been added yet.</p>
+                        <%}%>
+                      
                     </tr>
                     <tbody>
                         <% movies.forEach(movie=>{%>

@@ -81,7 +81,7 @@ header a{
     padding:0 1rem;
 }
 .links-container a:hover{
-    background-color: white;
+    background-color: var(--accent);
     color:black;
     border-radius:8px;
 }
@@ -98,6 +98,13 @@ main{
     flex-direction: column;
     max-width: 1400px;
     margin-inline: auto;
+    gap:2rem;
+    padding: 0 4rem;
+}
+
+main h1{
+    text-align: center;
+    color: var(--text-main);
 }
 
 /* addDialog*/
@@ -105,13 +112,11 @@ main{
     padding:1rem 2rem;
     border-radius: 16px;
     cursor: pointer;
-    width: 8rem;
     margin-inline:auto;
     text-align: center;
     background: var(--accent);
     color: white;
     border: none;
-
 }
 .open-add-dialog-button svg{
     width:100%;
@@ -143,7 +148,7 @@ main{
     grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
     justify-items: center;
     align-items: center;
-    padding: 4rem;
+    padding: 2rem 0rem;
     gap:2rem;
 }
 .card{
@@ -156,7 +161,7 @@ main{
     justify-content: space-between;
     overflow: hidden;
     max-width: 500px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.35);
     border: 1px solid rgba(255,255,255,.08);
     background: var(--surface);
     transition: transform .2s ease, background-color .2s ease;
@@ -166,6 +171,7 @@ main{
     background: var(--surface-hover);
     cursor: pointer;
     border-color:var(--primary-red);
+     box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 .card a{
     text-decoration: none;
@@ -175,6 +181,10 @@ main{
     align-items: center;
     font-size:2rem;
     padding:1rem;
+    text-align: center;
+}
+.empty-message{
+    color: var(--text-main);
     text-align: center;
 }
 .button-container {
@@ -233,6 +243,10 @@ form{
     flex-direction: column;
     gap:1rem;
 }
+form h2{
+    text-align: center;
+    margin-bottom: -1rem;
+}
 input,textarea{
      border: 1px solid black;
 }
@@ -248,6 +262,9 @@ label{
 .form-button-container button{
     padding:8px 16px;
     border-radius: 8px;
+}
+form textarea[name="description"]{
+    min-height: 200px;
 }
 /* footer*/
 .footer-wrapper{
@@ -270,4 +287,8 @@ footer a{
 }
 footer svg{
     filter:invert(1);
+}
+footer svg:hover{
+    fill:var(--accent);
+    filter: none;
 }

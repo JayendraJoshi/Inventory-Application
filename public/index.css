@@ -22,10 +22,18 @@ p, h1, h2, h3, h4, h5, h6 {
     --background: hsl(220, 20%, 8%);
     --surface: hsl(220, 15%, 14%);
     --surface-hover: hsl(220, 15%, 20%);
+
     --primary-red: hsl(0, 70%, 35%);
     --primary-red-hover: hsl(0, 70%, 45%);
+
     --text-main: hsl(0, 0%, 95%);
     --text-muted: hsl(0, 0%, 70%);
+
+     --success: hsl(145, 65%, 38%);
+    --success-hover: hsl(145, 65%, 46%);
+
+      --accent: hsl(35, 90%, 55%);
+      --accent-hover: hsl(35, 90%, 65%);
 }
 /** Styles*/
 body{
@@ -76,39 +84,14 @@ main {
     width:100%;
     margin-inline:auto;
 }
-
-.card {
-    min-height:200px;
-    padding:2rem;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    border:1px solid hsl(220, 10%, 30%);
-    border-radius:16px;
-
-    text-decoration:none;
-    color:var(--text-main);
-    background-color:var(--surface);
-
-    font-size:2rem;
-
-    transition: 
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
-}
 .hero-section {
     text-align: center;
-    padding: 6rem 2rem;
+    padding: 4rem 2rem;
 }
-
 .hero-section h2 {
     font-size: 3rem;
     margin-bottom: 1rem;
 }
-
 .hero-section p {
     font-size: 1.3rem;
     max-width: 600px;
@@ -121,13 +104,31 @@ main {
     width: 100%;
     padding: 2rem;
 }
+.card {
+    min-height:200px;
+    padding:2rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border:1px solid hsl(220, 10%, 30%);
+    border-radius:16px;
+    text-decoration:none;
+    color:var(--text-main);
+    background-color:var(--surface);
+    font-size:2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: 
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+}
 .card:hover {
     transform: translateY(-8px);
     background-color:var(--surface-hover);
     border-color:var(--primary-red);
     box-shadow:0 15px 30px rgba(0,0,0,0.5);
 }
-
 .footer-wrapper{
      background-color: var(--surface);
      border-top: 3px solid var(--primary-red);
@@ -151,4 +152,8 @@ footer a{
 svg{
     filter:invert(1);
     height:30px;
+}
+footer svg:hover{
+    fill:var(--accent);
+    filter: none;
 }

@@ -19,15 +19,30 @@ p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
 /* Variables */
-:root{
-    --secondary-bg-color:hsl(1, 61%, 27%);
-    --primary-bg-color:hsl(0,0%,15%);
-    --primary-font-color: hsl(0, 0%, 100%);
-    --card-color:hsl(0,0%,10%);
-    --card-selected-color:hsl(0,0%,30%);
-    --button-selected-color:hsl(0, 0%, 60%);
-    --action-color-delete:hsl(0, 100%, 30%);
+:root {
+    --background: hsl(220, 20%, 8%);
+    --surface: hsl(220, 15%, 14%);
+    --surface-hover: hsl(220, 15%, 20%);
+
+    --primary-red: hsl(0, 70%, 35%);
+    --primary-red-hover: hsl(0, 70%, 45%);
+
+    --text-main: hsl(0, 0%, 95%);
+    --text-muted: hsl(0, 0%, 70%);
+
+     --success: hsl(145, 65%, 38%);
+    --success-hover: hsl(145, 65%, 46%);
+
+      --accent: hsl(35, 90%, 55%);
+      --accent-hover: hsl(35, 90%, 65%);
 }
+/*Styles*/
+body{
+     background-color: var(--background);
+    display:flex;
+    flex-direction: column;
+}
+/*Header*/
 header{
     min-height:10vh;
     display:flex;
@@ -38,26 +53,38 @@ header{
     padding:1rem 0;
     color: white;
 }
+.header-wrapper, .footer-wrapper{
+     background-color:var(--surface);
+     z-index: 2;
+}
 .header-wrapper{
-     background-color:rgb(82, 14, 14);
+     border-bottom: 3px solid var(--primary-red);
 }
 header nav{
     flex-grow: 1;
     display:flex;
     padding:0 2rem;
     justify-content: space-between;
-    padding:0 4rem;
+    padding:0 3rem;
 }
 header .links-container{
     display:flex;
     gap:2rem;
 }
 header a{
-    color:white;
+    color: var(--text-main);
     text-decoration: none;
-    display: flex;
+     display: flex;
     align-items: center;
+    padding:0 1rem;
 }
+.links-container a:hover{
+    background-color: var(--accent);
+    color:black;
+    border-radius:8px;
+}
+
+/* Main*/
 .main-wrapper{
     padding:4rem 0;
     flex-grow: 1;
@@ -73,32 +100,24 @@ main{
     color:white;
     gap:2rem;
 }
-main button{
-   background-color: transparent;
+.add-movie-button{
+    background-color: var(--accent);
+    padding:1rem 2rem;
+    border-radius: 16px;
 }
-main button:hover{
-    cursor: pointer;
+.add-movie-button:hover{
+    background-color: var(--accent-hover);
 }
-main svg{
-    height:30px;
-    background-color: transparent;
+.empty-message{
+    color:var(--text-main);
 }
 table{
     color:white;
     border-collapse:collapse;
 }
-button{
-    border:none;
-}
 th,td{
     border:1px solid white;
     padding:8px;
-}
-th{
-    font-size:1.4rem;
-}
-svg{
-    filter:invert(1);
 }
 a{
     text-decoration: none;
@@ -109,13 +128,29 @@ a{
     display:flex;
     gap:1rem;
 }
-body{
-     background-color: var(--primary-bg-color);
-    display:flex;
-    flex-direction: column;
+.delete-button svg, .edit-button svg{
+    fill: var(--surface-hover);
 }
+.edit-button svg:hover{
+     fill: rgba(255, 255, 255, 0.274);
+}
+.delete-button svg:hover{
+    fill: hsl(0,70%,40%);
+}
+button{
+   background-color: transparent;
+       border:none;
+}
+button:hover{
+    cursor: pointer;
+}
+main svg{
+    height:30px;
+}
+/* Footer*/
 .footer-wrapper{
-      background-color:rgb(82, 14, 14);
+      background-color:var(--surface);
+      border-top: 3px solid var(--primary-red);
 }
 footer{
     min-height:5vh;
@@ -123,7 +158,6 @@ footer{
     justify-content: center;
     align-items: center;
     gap:2rem;
-    background-color:rgb(82, 14, 14);
     color:white;
     max-width: 1400px;
     margin-inline: auto;
@@ -136,4 +170,8 @@ footer a{
 footer svg{
     filter:invert(1);
     height: 30px;
+}
+footer svg:hover{
+    fill:var(--accent);
+    filter: none;
 }
